@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/num_telefono"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_weight="0.91"
+        android:background="#646870"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/lbnome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dip"
+            android:text="calendar"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/num_telefono"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_weight="0.11"
+        android:background="#d2e3fa"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:id="@+id/num_insulina"
+            android:layout_width="143dp"
+            android:layout_height="match_parent"
+            android:background="#d2e3fa"
+            android:baselineAligned="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lbnome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dip"
+                android:text="Terca-feira"
+                android:textColor="#235aa1" />
+
+            <TextView
+                android:id="@+id/lblNumInsulina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="24"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#235aa1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/num_telefonoaaa"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#d2e3fa"
+            android:baselineAligned="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lblMaxCar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Eventos do dia"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+       
+    </LinearLayout>
+
+</LinearLayout>

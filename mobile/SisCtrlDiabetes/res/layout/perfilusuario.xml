@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6"        
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/num_telefono"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"       
+        android:paddingTop="30dp" 
+        android:orientation="horizontal" > 
+    	
+         <LinearLayout
+             android:id="@+id/ly1"
+             android:layout_width="20dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+         </LinearLayout>
+         <LinearLayout
+             android:id="@+id/ly2"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+ 
+			<TextView
+		        android:id="@+id/lblName"
+	        	android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="Nome"/>
+       	</LinearLayout>
+        <LinearLayout
+        	android:id="@+id/ly3"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:baselineAligned="true"        
+        	android:orientation="vertical" > 
+	    	<EditText
+	        	android:id="@+id/txtName"
+	        	android:layout_width="164dp"
+    	    	android:layout_height="wrap_content"
+    	    	android:ems="10"
+	        	android:hint="Nome"
+	        	android:inputType="textPersonName" >
+	    	</EditText>
+	    </LinearLayout>
+    </LinearLayout>
+    
+     <LinearLayout
+        android:id="@+id/ly4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"        
+        android:orientation="horizontal" > 
+        <LinearLayout
+             android:id="@+id/ly5"
+             android:layout_width="20dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+        </LinearLayout>
+    	<LinearLayout
+             android:id="@+id/ly6"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+			<TextView
+		        android:id="@+id/lblEmail"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Email"/>
+    	</LinearLayout>
+    	<LinearLayout
+             android:id="@+id/ly7"
+             android:layout_width="fill_parent"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+		    <EditText
+		        android:id="@+id/txtEmail"
+		        android:layout_width="164dp"
+	    	    android:layout_height="wrap_content"
+	    	    android:ems="10"
+		        android:hint="Email"
+		        android:inputType="textPersonName" >
+		    </EditText>
+	    </LinearLayout>
+	</LinearLayout>
+
+	<LinearLayout
+        android:id="@+id/ly8"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"        
+        android:orientation="horizontal" >  
+        <LinearLayout
+             android:id="@+id/ly9"
+             android:layout_width="20dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+         </LinearLayout>
+        <LinearLayout
+             android:id="@+id/ly10"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >   
+			<TextView
+	        android:id="@+id/lblPeso"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Peso"/>
+		</LinearLayout>
+		<LinearLayout
+             android:id="@+id/ly11"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="horizontal" >
+    	<EditText
+    	    android:id="@+id/txtPeso"
+    	    android:layout_width="126dp"
+    	    android:layout_height="wrap_content"
+    	    android:ems="10"
+    	    android:hint="Peso"
+    	    android:inputType="textPersonName" >
+        	
+    	</EditText>
+    	
+    	<TextView
+	        android:id="@+id/lblKg"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Kg."/>
+    	</LinearLayout>
+    </LinearLayout>
+	<LinearLayout
+        android:id="@+id/ly12"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"        
+        android:orientation="horizontal" >   
+        <LinearLayout
+             android:id="@+id/ly13"
+             android:layout_width="20dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+         </LinearLayout>  
+         <LinearLayout
+             android:id="@+id/ly14"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >   
+		<TextView
+	        android:id="@+id/lblTamanho"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Tamanho"/>
+		</LinearLayout>
+ 		<LinearLayout
+             android:id="@+id/ly15"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="horizontal" >   
+    	<EditText
+    	    android:id="@+id/txtTamanho"
+    	    android:layout_width="120dp"
+    	    android:layout_height="wrap_content"
+    	    android:ems="10"
+    	    android:hint="Tamanho"
+    	    android:inputType="textPersonName" >
+
+    	</EditText>
+    	<TextView
+	        android:id="@+id/lblCm"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="cm."/>
+    	</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+        android:id="@+id/ly16"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"        
+        android:orientation="horizontal" > 
+        <LinearLayout
+             android:id="@+id/ly17"
+             android:layout_width="20dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >
+         </LinearLayout>
+         <LinearLayout
+             android:id="@+id/ly18"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >   
+	    	<TextView
+	        android:id="@+id/lblCantMedIns"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Quantidade Media de insulina"
+	        />
+		</LinearLayout>
+		 <LinearLayout
+             android:id="@+id/ly19"
+             android:layout_width="103dp"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"
+             android:orientation="vertical" >   
+	    <EditText
+    	    android:id="@+id/txtCantMedIns"
+    	    android:layout_width="120dp"
+    	    android:layout_height="wrap_content"
+    	    android:ems="10"
+    	    android:hint="Q. Media"
+    	    android:inputType="textPersonName" />
+    	</LinearLayout>
+	</LinearLayout>
+	<LinearLayout
+             android:id="@+id/ly20"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:baselineAligned="true"             
+             android:orientation="vertical" 
+             android:paddingTop="60dp"
+             android:layout_gravity="center">   
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Salvar" />  
+
+	</LinearLayout>
+</LinearLayout>

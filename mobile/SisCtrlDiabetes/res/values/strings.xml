@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    
+     <string name="app_name">SisCtrlDiabetes</string>
+    <string name="action_settings">Settings</string>
+    
+    
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="str_perfilUsuario">Perfil Usuário</string>
+    <string name="str_geracao">Geração de alimentos e insulina</string>
+    <string name="str_lembretes">Lembretes</string>
+    <string name="str_relatorios">Relatórios</string>
+    <string name="str_configuracoes">Configurações</string>
+    
+    <string name="genero_prompt">Selecione o genero</string>
+ 
+    <string-array name="genero_arrays">
+        <item>Masculino</item>
+        <item>Femenino</item>
+       
+    </string-array>
+    
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e6e6e6"
+    android:orientation="vertical" >
+
+    <TextView
+	        android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Relatorios de controle" />
+    
+    <LinearLayout
+        android:id="@+id/llde"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/lblDe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="De" />       
+    </LinearLayout>
+	<LinearLayout
+        android:id="@+id/llate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+		<TextView
+            android:id="@+id/lbl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Até" />
+	</LinearLayout>
+    <Button
+        android:id="@+id/btnEnviarEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar ao e-mail" />
+    
+</LinearLayout>
