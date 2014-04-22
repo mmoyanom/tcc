@@ -6,6 +6,7 @@ Imports User
 Public Class BMethods
 
     Public Function insertUser(ByVal lstuser As List(Of User)) As Integer
+
         Dim result As Integer
         Dim con As SqlConnection = Nothing
         Try
@@ -27,7 +28,7 @@ Public Class BMethods
                 cmd.ExecuteScalar()
                 result += cmd.Parameters("@ID").Value
             Next
-            
+
         Catch ex As Exception
             Console.WriteLine(ex.Message)
         Finally
