@@ -1,5 +1,9 @@
 package com.example.sisctrldiabetes;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.example.sisctrldiabetes.classes.Food;
 import com.example.sisctrldiabetes.classes.Handler;
 
 import android.os.Bundle;
@@ -7,11 +11,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
 
 public class MainActivity extends Activity implements OnClickListener{
-
+	
 	@Override
 	protected void onCreate(Bundle icicle) {
+		
 		super.onCreate(icicle);
 		
 		setContentView(R.layout.activity_main);
