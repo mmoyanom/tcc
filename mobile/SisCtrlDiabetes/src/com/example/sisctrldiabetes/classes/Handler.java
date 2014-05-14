@@ -110,7 +110,7 @@ public class Handler extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
-
+        GeracaoInsulina.ArrayofName.clear();
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
@@ -121,7 +121,8 @@ public class Handler extends SQLiteOpenHelper{
                 food.set_carb(cursor.getString(3));
                 food.set_fiber(cursor.getString(4));
                 
-                String name = cursor.getString(0)+".       "+cursor.getString(1) +"                   "+ cursor.getString(2)+"        "+ cursor.getString(3);
+                String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
+                
                 GeracaoInsulina.ArrayofName.add(name);
                 
                 // Adding contact to list
@@ -133,21 +134,39 @@ public class Handler extends SQLiteOpenHelper{
         return foodList;
     }
     
-    public int getCarbById(int id) {
+    public Double getCarbById(int id) {
                 
         String selectQuery = "SELECT carb FROM food WHERE _id="+id;
         System.out.println("selectQuery:" + selectQuery);
-        int carb = 0;
+        Double carb = 0.0;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
-                carb = Integer.parseInt(cursor.getString(0));
+                carb = Double.parseDouble(cursor.getString(0));
 
             } while (cursor.moveToNext());
         }
         return carb;
+    }
+    
+    public Double getFiberById(int id) {
+        
+        String selectQuery = "SELECT fiber FROM food WHERE _id="+id;
+        System.out.println("selectQuery:" + selectQuery);
+        Double fiber = 0.0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                fiber = Double.parseDouble(cursor.getString(0));
+
+            } while (cursor.moveToNext());
+        }
+        return fiber;
     }
 }

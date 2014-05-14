@@ -16,6 +16,7 @@ import android.widget.GridView;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
+	public Handler helper = new Handler(this);
 	@Override
 	protected void onCreate(Bundle icicle) {
 		
@@ -43,19 +44,24 @@ public class MainActivity extends Activity implements OnClickListener{
 		 View btnConfiguracoes = findViewById(R.id.btnConfiguracoes);
 		 btnConfiguracoes.setOnClickListener(this);
 		 
-		 Handler helper = new Handler(this);
+		 
 			String user = helper.getUser();
 			if (user == "empty"){
 				Intent it = new Intent(this, PerfilUsuario.class);
 				startActivity(it);	
 			}
-		
+			
+			System.out.println("Inserting foods...");
+			
+			helper.insertFood("food 1","100","300","400");
+			helper.insertFood("food 2","90","120","340");
+			helper.insertFood("food 3","80","150","120");
+			helper.insertFood("food 4","70","230","130");
 		
 	}
 	
 	public void onResume(){
 	    super.onResume();
-	    Handler helper = new Handler(this);
 		String user = helper.getUser();
 		if (user == "empty"){
 			Intent it = new Intent(this, PerfilUsuario.class);

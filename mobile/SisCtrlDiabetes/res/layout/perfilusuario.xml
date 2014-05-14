@@ -220,14 +220,22 @@
              android:layout_height="wrap_content"
              android:baselineAligned="true"
              android:orientation="vertical" >   
+
 	    <EditText
-    	    android:id="@+id/txtCantMedIns"
-    	    android:layout_width="120dp"
-    	    android:layout_height="wrap_content"
-    	    android:ems="10"
-    	    android:hint="Q. Media"
-    	    android:inputType="textPersonName" />
+	        android:id="@+id/txtCantMedIns"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:ems="10"
+	        android:hint="Q. Media"
+	        android:inputType="textPersonName" />
     	</LinearLayout>
+
+		 <TextView
+		     android:id="@+id/lblUnd"
+		     android:layout_width="wrap_content"
+		     android:layout_height="match_parent"
+		     android:text="unid." />
+
 	</LinearLayout>
 	<LinearLayout
              android:id="@+id/ly20"

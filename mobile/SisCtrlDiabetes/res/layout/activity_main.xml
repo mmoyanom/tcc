@@ -18,13 +18,14 @@
          android:layout_below="@+id/btnPerfilUsuario"
          style="@style/st_main_button"
          android:src="@drawable/btn_cal_insulina" />
-
+	
      <ImageButton
          android:id="@+id/btnLembretes"
          android:layout_width="300dp"
          android:layout_height="107dp"
          android:layout_alignLeft="@+id/btnGeracaoInsulina"
          android:layout_below="@+id/btnGeracaoInsulina"
+         android:visibility="invisible"
          style="@style/st_main_button"
          android:src="@drawable/btn_lem" />
 

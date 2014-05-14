@@ -43,24 +43,29 @@
             android:id="@+id/lblIdAlimento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Codigo  " />
+            android:text="Codigo " />
         <TextView
             android:id="@+id/lblNomeAlimento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nome alimento           " />
+            android:text="Nome alimento     " />
 
         <TextView
             android:id="@+id/lblGramas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gramas     " />
+            android:text="Gramas " />
 
         <TextView
             android:id="@+id/txtCarb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Carb" />
+            android:text="Carb " />
+         <TextView
+            android:id="@+id/txtFiber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fibra" />
     </LinearLayout>
 
     <LinearLayout
@@ -88,7 +93,7 @@
             android:id="@+id/txtNomeAlimento"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="9"
+            android:layout_weight="6.17"
             android:textSize="17sp" />
 
         <EditText
@@ -99,7 +104,13 @@
             android:textSize="17sp" />
 
         <EditText
-            android:id="@+id/txtCarb"
+            android:id="@+id/txtCarbCant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="17sp" />
+        <EditText
+            android:id="@+id/txtFiberCant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -110,7 +121,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Agregar" />
+            android:text="Adicionar" />
     </LinearLayout>
 
     <LinearLayout

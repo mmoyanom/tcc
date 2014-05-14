@@ -29,8 +29,12 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 	
 	private ListView listView;
 	private TextView txtCarbTotal;
+	private TextView txtFiberTotal;
 	private TextView txtGlicemia;
 	private TextView txtInsCons;
+	private TextView txtNomAli;
+	private TextView txtGramas;
+	private TextView txtCarb;
 	public static ArrayList<String> ArrayofName = new ArrayList<String>();
 	Handler helper = new Handler(this);
 	
@@ -43,18 +47,17 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 		btnConsultar.setOnClickListener(this);
 		View btnAgregar = findViewById(R.id.btnAgregar);
 		btnAgregar.setOnClickListener(this);
+		
+		txtFiberTotal = (TextView)findViewById(R.id.txtFiberCant);
 		txtCarbTotal = (TextView)findViewById(R.id.lblTotal);
 		txtGlicemia = (TextView)findViewById(R.id.txtGlicemia);
 		txtInsCons = (TextView)findViewById(R.id.lblNumInsulina);
 		
+		txtNomAli = (TextView)findViewById(R.id.txtNomeAlimento);
+		txtGramas = (TextView)findViewById(R.id.txtGramas);
+		txtCarb = (TextView)findViewById(R.id.txtCarbCant);
 		
-		
-		System.out.println("Inserting foods...");
-		
-		helper.insertFood("food 1","100","300","400");
-		helper.insertFood("food 2","90","120","340");
-		helper.insertFood("food 3","80","150","120");
-		helper.insertFood("food 4","70","230","130");
+		listView = (ListView)findViewById(R.id.listView1);
 		
 		System.out.println("Reading all foods..");
         
@@ -66,11 +69,13 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
         System.out.println("Read: "+ log);
 		}
         try {
-        	listView = (ListView)findViewById(R.id.listView1);
+        	
         	ArrayAdapter<String> adapter = new ArrayAdapter<String>(GeracaoInsulina.this,
                     android.R.layout.simple_list_item_multiple_choice, ArrayofName);
             
+        	listView.setAdapter(null);
             listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
 		} catch (Exception e) {
 			System.out.println("mensaje de error:"+e.getMessage());
@@ -86,7 +91,8 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 					String checked = "";
 					String unchecked = "";
 					SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
-					int carbTotal = 0;
+					Double carbTotal = 0.0;
+					Double fiberTotal = 0.0;
 					txtCarbTotal.setText("0");
 					txtInsCons.setText("0");
 					for(int i = 0; i < cntChoice; i++)
@@ -99,6 +105,7 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 					         int iFood = Integer.parseInt(item.substring(0,item.indexOf(".")));
 					         System.out.println("iFood:"+iFood);
 					         carbTotal += helper.getCarbById(iFood);
+					         fiberTotal += helper.getFiberById(iFood);
 					         System.out.println("carbTotal:"+carbTotal);
 					         txtCarbTotal.setText(String.valueOf(carbTotal));
 					         
@@ -112,7 +119,10 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 					         int insCons = 0;
 					         int insMedia = helper.getInsulinaMedia();
 					         insulina = glicemia / (1800/insMedia);
-					         insCons = insulina + (carbTotal/(1800/insMedia));
+					         if (fiberTotal > 0){
+					        	 carbTotal = carbTotal - fiberTotal;
+					         }
+					         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
 					         System.out.println("insCons:"+insCons);
 					         txtInsCons.setText(String.valueOf(insCons));
 					         
@@ -142,7 +152,7 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 	
 	public void onResume(){
 	    super.onResume();
-	    Handler helper = new Handler(this);
+
 		String user = helper.getUser();
 		if (user == "empty"){
 			Intent it = new Intent(this, PerfilUsuario.class);
@@ -156,11 +166,100 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 		 if(v.getId()==findViewById(R.id.btnConsultar).getId())
 		 {
 			System.out.println("entro consultar");
+			
+			int glicemia = 0;
+	         int insulina = 0;
+	         int insCons = 0;
+	         int insMedia = helper.getInsulinaMedia();
+	         
+	         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
+	        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
+	        	 insCons = glicemia / (1800/insMedia);
+	         }else{
+	        	 insCons = 0;
+	         }
+	         
+	         txtInsCons.setText(String.valueOf(insCons));
+	        
+			
+			
 	 	 }
 		//Agregar
 		 if(v.getId()==findViewById(R.id.btnAgregar).getId())
 		 {
-			System.out.println("entro agregar");
+			 System.out.println("entro agregar");
+			 helper.insertFood(txtNomAli.getText().toString(),
+					 		   txtGramas.getText().toString(),
+					 		  txtCarb.getText().toString(),
+					 		   txtFiberTotal.getText().toString());
+			 System.out.println("agrego food");
+			 List<Food> foods = helper.getAllFoods();
+			 
+	        	ArrayAdapter<String> adapter = new ArrayAdapter<String>(GeracaoInsulina.this,
+	                    android.R.layout.simple_list_item_multiple_choice, ArrayofName);
+	            
+	        	listView.setAdapter(null);
+	            listView.setAdapter(adapter);
+	            System.out.println("actualizar lista");
+	            int lastPos = listView.getCount()-1;
+	            listView.setItemChecked(lastPos, true);
+	            int cntChoice = listView.getCount();
+				String checked = "";
+				String unchecked = "";
+				SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
+				Double carbTotal = 0.0;
+				Double fiberTotal = 0.0;
+				txtCarbTotal.setText("0");
+				txtInsCons.setText("0");
+				for(int i = 0; i < cntChoice; i++)
+				{
+					 
+				     if(sparseBooleanArray.get(i) == true) 
+				     {
+				    	 Double fiberAct = 0.0;
+				         checked += listView.getItemAtPosition(i).toString() + "\n";
+				         String item = listView.getItemAtPosition(i).toString();
+				         int iFood = Integer.parseInt(item.substring(0,item.indexOf(".")));
+				         System.out.println("iFood:"+iFood);
+				         carbTotal += helper.getCarbById(iFood);
+				         fiberAct = Double.valueOf(helper.getFiberById(iFood));
+				         if (fiberAct>0){
+				        	 fiberTotal += fiberAct; 
+				         }
+				          
+				         System.out.println("carbTotal:"+carbTotal);
+				         txtCarbTotal.setText(String.valueOf(carbTotal));
+				         
+				         int glicemia = 0;
+				         int insulina = 0;
+				         int insCons = 0;
+				         int insMedia = helper.getInsulinaMedia();
+				         
+				         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
+				        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
+				        	 insulina = glicemia / (1800/insMedia);
+				        	 if (fiberTotal > 0){
+					        	 carbTotal = carbTotal - fiberTotal;
+					         }
+					         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
+				         }else{
+					         insCons = (int)(carbTotal/(1800/insMedia));
+				         }
+				         
+				         
+				         System.out.println("insCons:"+insCons);
+				         txtInsCons.setText(String.valueOf(insCons));
+				         
+				     }
+				     else  if(sparseBooleanArray.get(i) == false) 
+				     {
+				         unchecked+= listView.getItemAtPosition(i).toString() + "\n";
+				     }
+				 }
+				
+				System.out.println("checked:" + checked);
+				System.out.println("unchecked:" + unchecked);
+  
 	 	 }
 		
 	}
