@@ -1,0 +1,8 @@
+D:\GlicoLife\ws\bin\ws.dll
+D:\GlicoLife\ws\bin\ws.pdb
+D:\GlicoLife\ws\bin\ws.xml
+D:\GlicoLife\ws\obj\Debug\ws.Resources.resources
+D:\GlicoLife\ws\obj\Debug\ws.vbproj.GenerateResource.Cache
+D:\GlicoLife\ws\obj\Debug\ws.dll
+D:\GlicoLife\ws\obj\Debug\ws.xml
+D:\GlicoLife\ws\obj\Debug\ws.pdb
