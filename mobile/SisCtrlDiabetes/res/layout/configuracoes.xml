@@ -5,10 +5,25 @@
     android:background="#e6e6e6"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/num_telefono"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Configuracoes" />
+        android:baselineAligned="true"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sincronização informação" />
+
+        <Button
+            android:id="@+id/btnSinc"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sincronizar" />
+    </LinearLayout>
 
 </LinearLayout>

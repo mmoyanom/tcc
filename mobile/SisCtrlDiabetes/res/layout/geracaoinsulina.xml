@@ -177,6 +177,12 @@
                 android:layout_height="wrap_content"
                 android:text="Total Carb"
                 android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Fibr"
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -192,6 +198,12 @@
 
             <TextView
                 android:id="@+id/lblTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FFFFFF" />
+           <TextView
+                android:id="@+id/lblTotalFibr"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"

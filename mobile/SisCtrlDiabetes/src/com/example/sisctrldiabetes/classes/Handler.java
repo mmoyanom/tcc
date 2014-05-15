@@ -24,17 +24,28 @@ public class Handler extends SQLiteOpenHelper{
 		
 		String query = "create table user ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
 											+ "name TEXT,email TEXT,weight TEXT,size TEXT,insulina TEXT);";
+		
 		String query2 = " create table food ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ "name TEXT,weight TEXT,carb TEXT,fiber TEXT);";
 		
+		String query3 = " create table h_lunch ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ "iduser INTEGER,ins TEXT,gli TEXT,carb TEXT,fiber TEXT,date TEXT);";
+		
+		String query4 = " create table d_lunch ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
+				+ "idh INTEGER,idfood INTEGER,weight TEXT,carb TEXT,fiber TEXT);";
+		
 		db.execSQL(query);
 		db.execSQL(query2);
+		db.execSQL(query3);
+		db.execSQL(query4);
 	}
 	
 	@Override
 	public void onUpgrade(SQLiteDatabase db,int version_old,int version_new){
 		db.execSQL("DROP TABLE IF EXISTS user;");
 		db.execSQL("DROP TABLE IF EXISTS food;");
+		db.execSQL("DROP TABLE IF EXISTS h_lunch;");
+		db.execSQL("DROP TABLE IF EXISTS d_lunch;");
 		onCreate(db);
 	}
 	
@@ -106,7 +117,69 @@ public class Handler extends SQLiteOpenHelper{
     public ArrayList<Food> getAllFoods() {
         ArrayList<Food> foodList = new ArrayList<Food>();
         
-        String selectQuery = "SELECT  * FROM food";
+        String selectQuery = "SELECT  * FROM food ORDER BY name";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        GeracaoInsulina.ArrayofName.clear();
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	Food food = new Food();
+                food.set_id(Integer.parseInt(cursor.getString(0)));
+                food.set_name(cursor.getString(1));
+                food.set_weight(cursor.getString(2));
+                food.set_carb(cursor.getString(3));
+                food.set_fiber(cursor.getString(4));
+                
+                String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
+                
+                GeracaoInsulina.ArrayofName.add(name);
+                
+                // Adding contact to list
+                foodList.add(food);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return foodList;
+    }
+    
+    public ArrayList<Food> getAllFoodsDesc() {
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        
+        String selectQuery = "SELECT  * FROM food ORDER BY carb desc";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        GeracaoInsulina.ArrayofName.clear();
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	Food food = new Food();
+                food.set_id(Integer.parseInt(cursor.getString(0)));
+                food.set_name(cursor.getString(1));
+                food.set_weight(cursor.getString(2));
+                food.set_carb(cursor.getString(3));
+                food.set_fiber(cursor.getString(4));
+                
+                String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
+                
+                GeracaoInsulina.ArrayofName.add(name);
+                
+                // Adding contact to list
+                foodList.add(food);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return foodList;
+    }
+    
+    public ArrayList<Food> getAllFoodsAsc() {
+        ArrayList<Food> foodList = new ArrayList<Food>();
+        
+        String selectQuery = "SELECT  * FROM food ORDER BY carb asc";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -169,4 +242,81 @@ public class Handler extends SQLiteOpenHelper{
         }
         return fiber;
     }
+    
+    public String getWeightById(int id) {
+        
+        String selectQuery = "SELECT weight FROM food WHERE _id="+id;
+        System.out.println("selectQuery:" + selectQuery);
+        String weight = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	weight = cursor.getString(0);
+
+            } while (cursor.moveToNext());
+        }
+        return weight;
+    }
+    
+    public void insertLunchH(int iduser,String ins,String gli,String carb,String fiber,String date){
+		ContentValues values = new ContentValues();
+		values.put("iduser", iduser);
+		values.put("ins", ins);
+		values.put("gli", gli);
+		values.put("carb", carb);
+		values.put("fiber", fiber);
+		values.put("date", date);
+		this.getWritableDatabase().insert("h_lunch", null, values);
+	}
+    
+    public void insertLunchD(int idh,int idfood,String weight,String carb,String fiber){
+		ContentValues values = new ContentValues();
+		values.put("idh", idh);
+		values.put("idfood", idfood);
+		values.put("weight", weight);
+		values.put("carb", carb);
+		values.put("fiber", fiber);
+		this.getWritableDatabase().insert("d_lunch", null, values);
+	}
+    
+    public int getIdUser() {
+        
+        String selectQuery = "SELECT _ID FROM user ORDER BY _ID ASC LIMIT 1";
+        System.out.println("selectQuery:" + selectQuery);
+        int id = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	id = Integer.parseInt(cursor.getString(0));
+
+            } while (cursor.moveToNext());
+        }
+        return id;
+    }
+    
+    public int getLastIdLunchH() {
+        
+        String selectQuery = "SELECT _ID FROM h_lunch ORDER BY _ID DESC LIMIT 1";
+        System.out.println("selectQuery:" + selectQuery);
+        int id = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	id = Integer.parseInt(cursor.getString(0));
+
+            } while (cursor.moveToNext());
+        }
+        return id;
+    }
+    
+    
 }
