@@ -54,6 +54,8 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 		btnConsultar.setOnClickListener(this);
 		View btnAgregar = findViewById(R.id.btnAgregar);
 		btnAgregar.setOnClickListener(this);
+		View btnSalvar = findViewById(R.id.btnSalvar);
+		btnSalvar.setOnClickListener(this);
 		
 		txtFiberTotal = (TextView)findViewById(R.id.txtFiberCant);
 		txtFiberTotalGerado = (TextView)findViewById(R.id.lblTotalFibr);
@@ -100,41 +102,27 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 						         }
 						         
 						         System.out.println("carbTotal:"+carbTotal);
-						         
-						         txtCarbTotal.setText(String.valueOf(carbTotal));
-						         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
-						         
-						         int glicemia = 0;
-						         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
-						        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
-						         }else{
-						        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString());
-						         }
-						         int insulina = 0;
-						         int insCons = 0;
-						         int insMedia = helper.getInsulinaMedia();
-						         insulina = glicemia / (1800/insMedia);
-						         if (fiberTotal > 0){
-						        	 carbTotal = carbTotal - fiberTotal;
-						         }
-						         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
-						         System.out.println("insCons:"+insCons);
-						         txtInsCons.setText(String.valueOf(insCons));
-						         
-						         
-						         
-						         
-						         
 						     }
-						     else  if(sparseBooleanArray.get(i) == false) 
-						     {
-						         unchecked+= listView.getItemAtPosition(i).toString() + "\n";
-						     }
-
 						 }
 						
-						System.out.println("checked:" + checked);
-						System.out.println("unchecked:" + unchecked);
+				         int glicemia = 0;
+				         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
+				        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
+				         }else{
+				        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString());
+				         }
+				         int insulina = 0;
+				         int insCons = 0;
+				         int insMedia = helper.getInsulinaMedia();
+				         insulina = glicemia / (1800/insMedia);
+				         if (fiberTotal > 0){
+				        	 carbTotal = carbTotal - fiberTotal;
+				         }
+				         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
+				         System.out.println("insCons:"+insCons);
+				         txtInsCons.setText(String.valueOf(insCons));
+				         txtCarbTotal.setText(String.valueOf(carbTotal));
+				         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
 	    			   }
 					}
         });
@@ -221,6 +209,20 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 		 if(v.getId()==findViewById(R.id.btnAgregar).getId())
 		 {
 			 System.out.println("entro agregar");
+			 if (txtNomAli.getText().toString().trim().matches("")){
+					Toast.makeText(this, "Você não inseriu a nome do alimento", Toast.LENGTH_SHORT).show();
+				    return;
+			}else if(txtGramas.getText().toString().trim().matches("")){
+					Toast.makeText(this, "Você não inseriu as gramas", Toast.LENGTH_SHORT).show();
+					return;
+			}else if(txtCarb.getText().toString().trim().matches("")){
+					Toast.makeText(this, "Você não inseriu o carboidrato", Toast.LENGTH_SHORT).show();
+					return;
+			}else if(txtFiberTotal.getText().toString().trim().matches("")){
+					Toast.makeText(this, "Você não inseriu a fibra", Toast.LENGTH_SHORT).show();
+					return;
+			}
+			 
 			 helper.insertFood(txtNomAli.getText().toString(),
 					 		   txtGramas.getText().toString(),
 					 		  txtCarb.getText().toString(),
@@ -258,55 +260,54 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 				         carbTotal += helper.getCarbById(iFood);
 				         fiberAct = helper.getFiberById(iFood);
 				         if (fiberAct > 0.5){
+				        	 System.out.println("fiberAct:"+fiberAct);
 				        	 fiberTotal += fiberAct; 
 				         }
-				          
-				         System.out.println("carbTotal:"+carbTotal);
-				         txtCarbTotal.setText(String.valueOf(carbTotal));
-				         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
-				         
-				         int glicemia = 0;
-				         int insulina = 0;
-				         int insCons = 0;
-				         int insMedia = helper.getInsulinaMedia();
-				         
-				         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
-				        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
-				        	 insulina = glicemia / (1800/insMedia);
-				        	 if (fiberTotal > 0){
-					        	 carbTotal = carbTotal - fiberTotal;
-					         }
-					         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
-				         }else{
-					         insCons = (int)(carbTotal/(1800/insMedia));
-				         }
-				         
-				         
-				         System.out.println("insCons:"+insCons);
-				         txtInsCons.setText(String.valueOf(insCons));
-				         
 				     }
-				     else  if(sparseBooleanArray.get(i) == false) 
-				     {
-				         unchecked+= listView.getItemAtPosition(i).toString() + "\n";
-				     }
+				     
 				 }
-				
-				System.out.println("checked:" + checked);
-				System.out.println("unchecked:" + unchecked);
-  
+				 System.out.println("carbTotal:"+carbTotal);
+				 System.out.println("fiberTotal:"+fiberTotal);
+		         
+		         int glicemia = 0;
+		         int insulina = 0;
+		         int insCons = 0;
+		         int insMedia = helper.getInsulinaMedia();
+		         
+		         if (Integer.parseInt(txtGlicemia.getText().toString())>120){
+		        	 glicemia = Integer.parseInt(txtGlicemia.getText().toString()) - 120;
+		        	 insulina = glicemia / (1800/insMedia);
+		        	 if (fiberTotal > 0){
+			        	 carbTotal = carbTotal - fiberTotal;
+			         }
+			         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
+		         }else{
+			         insCons = (int)(carbTotal/(1800/insMedia));
+		         }
+		         
+		         txtCarbTotal.setText(String.valueOf(carbTotal));
+		         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
+		         System.out.println("insCons:"+insCons);
+		         txtInsCons.setText(String.valueOf(insCons));
+ 
 	 	 }
 		 
 		//Salvar
 		 if(v.getId()==findViewById(R.id.btnSalvar).getId())
 		 {
+			 System.out.println("entro salvar");
 			 SparseBooleanArray sparseBooleanArray = listView.getCheckedItemPositions();
+			 int cntChoiced = listView.getCount();
+			 int checked = 0;
+			 for(int i = 0; i < cntChoiced; i++)
+				 if(sparseBooleanArray.get(i) == true) 
+			    	 checked++;
 			 
 			 if(ArrayofName.isEmpty())
 			 {
 				 Toast.makeText(this, "Você não inseriu os alimentos", Toast.LENGTH_SHORT).show();
 				 return;
-			 }else if(sparseBooleanArray == null){
+			 }else if(checked <= 0){
 				 Toast.makeText(this, "Você não selecionou nenhum alimento", Toast.LENGTH_SHORT).show();
 				 return;
 			 }else{
@@ -321,7 +322,7 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 				 SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 				 Date today = Calendar.getInstance().getTime();        
 				 String sDate = df.format(today);
-				 
+				 System.out.println("insertando Header:"+idUser+","+insulina+","+glicemia+","+carbTotal+","+fiberTotal+","+sDate);
 				 helper.insertLunchH(idUser,insulina,glicemia,carbTotal,fiberTotal,sDate);
 				 idH = helper.getLastIdLunchH();
 				 int cntChoice = listView.getCount();
@@ -338,6 +339,7 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 						 weight = helper.getWeightById(iFood);
 						 carbAct = String.valueOf(helper.getCarbById(iFood));
 						 fiberAct = String.valueOf(helper.getFiberById(iFood));
+						 System.out.println("insertando Detail:"+idH+","+iFood+","+weight+","+carbAct+","+fiberAct);
 						 helper.insertLunchD(idH,iFood,weight,carbAct,fiberAct);					 
 				     }
 				 }

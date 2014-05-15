@@ -44,5 +44,5 @@
             android:label="@string/str_configuracoes">
         </activity>
     </application>
-
+	<uses-permission android:name="android.permission.INTERNET"/>
 </manifest>

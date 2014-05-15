@@ -1,14 +1,27 @@
 package com.example.sisctrldiabetes;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
+import com.example.sisctrldiabetes.async.AsyncCallWS;
 import com.example.sisctrldiabetes.classes.Food;
 import com.example.sisctrldiabetes.classes.Handler;
+import com.example.sisctrldiabetes.soap.CallSoap;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -53,10 +66,16 @@ public class MainActivity extends Activity implements OnClickListener{
 			
 			System.out.println("Inserting foods...");
 			
+			/*
+			AsyncCallWS task = new AsyncCallWS();
+	        task.execute();
+			*/
+	        
 			helper.insertFood("food 1","100","300","10");
 			helper.insertFood("food 2","90","120","15");
 			helper.insertFood("food 3","80","150","20");
 			helper.insertFood("food 4","70","230","30");
+			
 		
 	}
 	
@@ -106,8 +125,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			 startActivity(it);
 	 	 }
 
-	}
-	
-	
+	}	
 	
 }

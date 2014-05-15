@@ -5,5 +5,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/ksoap2-android-full-2.1.2.jar/ksoap2-android-full-2.1.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
