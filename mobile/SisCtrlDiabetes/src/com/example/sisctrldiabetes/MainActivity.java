@@ -64,15 +64,11 @@ public class MainActivity extends Activity implements OnClickListener{
 			AsyncCallWS task = new AsyncCallWS();
 	        task.execute();
 	        
-			listFood result = new listFood();
+			ArrayList<Food> result = new ArrayList<Food>();
 	        try {
 	        	result =  task.get();
-	        	if(result.isSuccess()){
-					if(result.getData().size() > 0){
-						for(Food fd : result.getData()){
-							helper.insertFood(fd.get_name(),fd.get_weight(),fd.get_carb(),fd.get_fiber());
-						}
-					} 
+				for(Food fd : result){
+					helper.insertFood(fd.getName(),fd.getWeight(),fd.getCarb(),fd.getFiber());
 				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
@@ -81,8 +77,6 @@ public class MainActivity extends Activity implements OnClickListener{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
 	        
 	        /*
 			helper.insertFood("food 1","100","300","10");

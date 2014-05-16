@@ -1,18 +1,29 @@
 package com.example.sisctrldiabetes.classes;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Food {
 	
+	@SerializedName(value = "Id")
 	int _id;
+	
+	@SerializedName(value = "Name")
 	String _name;
-    String _weight;
-    String _carb;
-    String _fiber;
+	
+	@SerializedName(value = "Weight")
+    Double _weight;
+	
+	@SerializedName(value = "Carbohydrate")
+    Double _carb;
+	
+	@SerializedName(value = "Fiber")
+    Double _fiber;
     
     public Food(){
 
     }
     // constructor
-    public Food(int id, String name, String weight, String carb, String fiber){
+    public Food(int id, String name, Double weight, Double carb, Double fiber){
         this._id = id;
         this._name = name;
         this._weight = weight;
@@ -20,34 +31,34 @@ public class Food {
         this._fiber = fiber;
     }
     
-    public int get_id() {
+    public int getId() {
 		return _id;
 	}
-	public void set_id(int _id) {
+	public void setId(int _id) {
 		this._id = _id;
 	}
-	public String get_name() {
+	public String getName() {
 		return _name;
 	}
-	public void set_name(String _name) {
+	public void setName(String _name) {
 		this._name = _name;
 	}
-	public String get_weight() {
+	public Double getWeight() {
 		return _weight;
 	}
-	public void set_weight(String _weight) {
+	public void setWeight(Double _weight) {
 		this._weight = _weight;
 	}
-	public String get_carb() {
+	public Double getCarb() {
 		return _carb;
 	}
-	public void set_carb(String _carb) {
+	public void setCarb(Double _carb) {
 		this._carb = _carb;
 	}
-	public String get_fiber() {
+	public Double getFiber() {
 		return _fiber;
 	}
-	public void set_fiber(String _fiber) {
+	public void setFiber(Double _fiber) {
 		this._fiber = _fiber;
 	}
 

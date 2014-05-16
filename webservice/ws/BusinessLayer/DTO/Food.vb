@@ -30,13 +30,13 @@
         End Set
     End Property
 
-    Private _carbohydrate As Double
+    Private _carb As Double
     Public Property Carbohydrate() As Double
         Get
-            Return _carbohydrate
+            Return _carb
         End Get
         Set(ByVal value As Double)
-            _carbohydrate = value
+            _carb = value
         End Set
     End Property
 
@@ -50,44 +50,44 @@
         End Set
     End Property
 
-    Private _usuCreate As String
-    Public Property UsuCreate() As String
-        Get
-            Return _usuCreate
-        End Get
-        Set(ByVal value As String)
-            _usuCreate = value
-        End Set
-    End Property
+    'Private _usuCreate As String
+    'Public Property UsuCreate() As String
+    '    Get
+    '        Return _usuCreate
+    '    End Get
+    '    Set(ByVal value As String)
+    '        _usuCreate = value
+    '    End Set
+    'End Property
 
-    Private _dateCreate As Date
-    Public Property DateCreate() As Date
-        Get
-            Return _dateCreate
-        End Get
-        Set(ByVal value As Date)
-            _dateCreate = value
-        End Set
-    End Property
+    'Private _dateCreate As Date
+    'Public Property DateCreate() As Date
+    '    Get
+    '        Return _dateCreate
+    '    End Get
+    '    Set(ByVal value As Date)
+    '        _dateCreate = value
+    '    End Set
+    'End Property
 
-    Private _usuUpdate As String
-    Public Property UsuUpdate() As String
-        Get
-            Return _usuUpdate
-        End Get
-        Set(ByVal value As String)
-            _usuUpdate = value
-        End Set
-    End Property
+    'Private _usuUpdate As String
+    'Public Property UsuUpdate() As String
+    '    Get
+    '        Return _usuUpdate
+    '    End Get
+    '    Set(ByVal value As String)
+    '        _usuUpdate = value
+    '    End Set
+    'End Property
 
-    Private _dateUpdate As Date
-    Public Property DateUpdate() As Date
-        Get
-            Return _dateUpdate
-        End Get
-        Set(ByVal value As Date)
-            _dateUpdate = value
-        End Set
-    End Property
+    'Private _dateUpdate As Date
+    'Public Property DateUpdate() As Date
+    '    Get
+    '        Return _dateUpdate
+    '    End Get
+    '    Set(ByVal value As Date)
+    '        _dateUpdate = value
+    '    End Set
+    'End Property
 End Class
 

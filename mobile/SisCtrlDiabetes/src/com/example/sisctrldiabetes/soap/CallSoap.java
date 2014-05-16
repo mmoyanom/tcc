@@ -2,6 +2,9 @@ package com.example.sisctrldiabetes.soap;
 
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.FormatterClosedException;
 
 import org.ksoap2.SoapEnvelope; 
 import org.ksoap2.serialization.PropertyInfo; 
@@ -9,6 +12,7 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import com.example.sisctrldiabetes.classes.Food;
 import com.example.sisctrldiabetes.classes.listFood;
 import com.google.gson.reflect.TypeToken;
 
@@ -25,41 +29,48 @@ public class CallSoap {
 
 	public  final String WSDL_TARGET_NAMESPACE = "http://tempuri.org/";
 
-	public  final String SOAP_ADDRESS = "http://localhost:61071/appService.asmx";
+	public  final String SOAP_ADDRESS = "http://10.226.106.215/ws/appService.asmx";
 	
-	private Gson gson;
+	//private Gson gson;
 	
 	public CallSoap() 
 	{ 
 	}
-	public listFood getFoods()
+	public ArrayList<Food> getFoods()
 	{
 		SoapObject request = new SoapObject(WSDL_TARGET_NAMESPACE,OPERATION_NAME);
 		
-		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
-		SoapEnvelope.VER11);
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 		envelope.dotNet = true;
 	
 		envelope.setOutputSoapObject(request);
 	
 		HttpTransportSE httpTransport = new HttpTransportSE(SOAP_ADDRESS);
 		
+		String str_result="";
+		
 		try
 		{
 			httpTransport.call(SOAP_ACTION, envelope);
 			Object soapObject= (Object)envelope.getResponse();
 			if(soapObject != null){
-				String str_result = soapObject.toString();
-				Type type = new TypeToken<listFood>(){}.getType();
-				listFood rslt = gson.fromJson(str_result, type);
+				str_result = soapObject.toString();
+				System.out.println("result:"+str_result);
+				Type type = new TypeToken<Collection<Food>>(){}.getType();
+				Gson gson = new Gson();
+				ArrayList<Food> rslt = gson.fromJson(str_result, type);
+					for(Food fd : rslt){
+						System.out.println("insert"+fd.getName()+","+fd.getWeight()+","+fd.getCarb()+","+fd.getFiber());
+					}
+				
 				return rslt;
 			}
 		}
 		catch (Exception exception)
 		{
-			System.out.println(exception.toString());
+			System.out.println("error:"+exception.toString());
 		}
-		listFood rslt = new listFood();
+		ArrayList<Food> rslt = new ArrayList<Food>();
 		return rslt;
 	}
 

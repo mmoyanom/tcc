@@ -21,7 +21,7 @@ Public Class appService
 
     <WebMethod()> _
     <ScriptMethod(UseHttpGet:=True)> _
-    Public Function ObterAlimentos() As JsonObjectResponse
+    Public Function ObterAlimentos() As String
         Dim response As String
         Dim service As New BMethods
         Dim x As New JsonObjectResponse
@@ -30,11 +30,12 @@ Public Class appService
         If items IsNot Nothing Then
             Dim slz As New JavaScriptSerializer
             response = slz.Serialize(items)
-            x.value = response
+            'x.value = response
         Else
             response = "Error"
         End If
-        Return x
+        Return response
+        'Return x
         'Return items
     End Function
     <WebMethod()> _

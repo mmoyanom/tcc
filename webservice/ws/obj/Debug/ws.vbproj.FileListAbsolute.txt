@@ -6,3 +6,11 @@ D:\GlicoLife\ws\obj\Debug\ws.vbproj.GenerateResource.Cache
 D:\GlicoLife\ws\obj\Debug\ws.dll
 D:\GlicoLife\ws\obj\Debug\ws.xml
 D:\GlicoLife\ws\obj\Debug\ws.pdb
+D:\tcc\webservice\ws\bin\ws.dll
+D:\tcc\webservice\ws\bin\ws.pdb
+D:\tcc\webservice\ws\bin\ws.xml
+D:\tcc\webservice\ws\obj\Debug\ws.Resources.resources
+D:\tcc\webservice\ws\obj\Debug\ws.vbproj.GenerateResource.Cache
+D:\tcc\webservice\ws\obj\Debug\ws.dll
+D:\tcc\webservice\ws\obj\Debug\ws.xml
+D:\tcc\webservice\ws\obj\Debug\ws.pdb

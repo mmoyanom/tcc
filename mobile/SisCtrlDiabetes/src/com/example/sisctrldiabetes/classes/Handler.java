@@ -96,7 +96,7 @@ public class Handler extends SQLiteOpenHelper{
 		}	
 	}
 	
-	public void insertFood(String name,String weight,String carb,String fiber){
+	public void insertFood(String name,Double weight,Double carb,Double fiber){
 		ContentValues values = new ContentValues();
 		System.out.println("insertando de la BD:"+name+","+weight+","+carb+","+fiber);
 		values.put("name", name);
@@ -127,11 +127,11 @@ public class Handler extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             do {
             	Food food = new Food();
-                food.set_id(Integer.parseInt(cursor.getString(0)));
-                food.set_name(cursor.getString(1));
-                food.set_weight(cursor.getString(2));
-                food.set_carb(cursor.getString(3));
-                food.set_fiber(cursor.getString(4));
+                food.setId(Integer.parseInt(cursor.getString(0)));
+                food.setName(cursor.getString(1));
+                food.setWeight(Double.parseDouble(cursor.getString(2)));
+                food.setCarb(Double.parseDouble(cursor.getString(3)));
+                food.setFiber(Double.parseDouble(cursor.getString(4)));
                 
                 String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
                 
@@ -158,11 +158,10 @@ public class Handler extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             do {
             	Food food = new Food();
-                food.set_id(Integer.parseInt(cursor.getString(0)));
-                food.set_name(cursor.getString(1));
-                food.set_weight(cursor.getString(2));
-                food.set_carb(cursor.getString(3));
-                food.set_fiber(cursor.getString(4));
+                food.setId(Integer.parseInt(cursor.getString(0)));
+                food.setWeight(Double.parseDouble(cursor.getString(2)));
+                food.setCarb(Double.parseDouble(cursor.getString(3)));
+                food.setFiber(Double.parseDouble(cursor.getString(4)));
                 
                 String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
                 
@@ -189,11 +188,11 @@ public class Handler extends SQLiteOpenHelper{
         if (cursor.moveToFirst()) {
             do {
             	Food food = new Food();
-                food.set_id(Integer.parseInt(cursor.getString(0)));
-                food.set_name(cursor.getString(1));
-                food.set_weight(cursor.getString(2));
-                food.set_carb(cursor.getString(3));
-                food.set_fiber(cursor.getString(4));
+                food.setId(Integer.parseInt(cursor.getString(0)));
+                food.setName(cursor.getString(1));
+                food.setWeight(Double.parseDouble(cursor.getString(2)));
+                food.setCarb(Double.parseDouble(cursor.getString(3)));
+                food.setFiber(Double.parseDouble(cursor.getString(4)));
                 
                 String name = cursor.getString(0)+".  "+cursor.getString(1) +"                   "+ cursor.getString(2)+"    "+ cursor.getString(3)+"   "+ cursor.getString(4);
                 

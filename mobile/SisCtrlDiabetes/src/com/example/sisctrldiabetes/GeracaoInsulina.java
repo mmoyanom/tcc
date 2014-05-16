@@ -184,7 +184,7 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 		         }	
 		 		
 		 		for (Food fd : foods) {
-		             String log = "Id: "+fd.get_id()+" ,Name: " + fd.get_name();
+		             String log = "Id: "+fd.getId()+" ,Name: " + fd.getName();
 		                 // Writing Contacts to log
 		         System.out.println("Read: "+ log);
 		 		}
@@ -224,9 +224,9 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 			}
 			 
 			 helper.insertFood(txtNomAli.getText().toString(),
-					 		   txtGramas.getText().toString(),
-					 		  txtCarb.getText().toString(),
-					 		   txtFiberTotal.getText().toString());
+					 		   Double.parseDouble(txtGramas.getText().toString()),
+					 		   Double.parseDouble(txtCarb.getText().toString()),
+					 		   Double.parseDouble(txtFiberTotal.getText().toString()));
 			 System.out.println("agrego food");
 			 List<Food> foods = helper.getAllFoods();
 			 
