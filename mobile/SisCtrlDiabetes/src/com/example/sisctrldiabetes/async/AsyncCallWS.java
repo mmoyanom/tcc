@@ -1,18 +1,23 @@
 package com.example.sisctrldiabetes.async;
 
+import com.example.sisctrldiabetes.classes.listFood;
 import com.example.sisctrldiabetes.soap.CallSoap;
 
 import android.os.AsyncTask;
 
-public class AsyncCallWS extends AsyncTask<Void, Void, Void>{
+public class AsyncCallWS extends AsyncTask<listFood, Void, listFood>{
 
 	@Override
-	protected Void doInBackground(Void... params) {
+	protected listFood doInBackground(listFood... params) {
 		CallSoap cs = new CallSoap();
-		String resp = cs.getFoods();
-		System.out.println(resp);
-		return null;
+		listFood resp = cs.getFoods();
+		return resp;
 	}
+	@Override
+    protected void onPostExecute(listFood lf) {
+       super.onPostExecute(lf);
+
+    }
 	
 
 	

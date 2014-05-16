@@ -98,6 +98,7 @@ public class Handler extends SQLiteOpenHelper{
 	
 	public void insertFood(String name,String weight,String carb,String fiber){
 		ContentValues values = new ContentValues();
+		System.out.println("insertando de la BD:"+name+","+weight+","+carb+","+fiber);
 		values.put("name", name);
 		values.put("weight", weight);
 		values.put("carb", carb);

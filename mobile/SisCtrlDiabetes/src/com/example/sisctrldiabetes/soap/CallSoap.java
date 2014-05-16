@@ -1,9 +1,21 @@
 package com.example.sisctrldiabetes.soap;
+
+
+import java.lang.reflect.Type;
+
 import org.ksoap2.SoapEnvelope; 
 import org.ksoap2.serialization.PropertyInfo; 
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
+
+import com.example.sisctrldiabetes.classes.listFood;
+import com.google.gson.reflect.TypeToken;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import android.util.Log;
 
 public class CallSoap {
 	
@@ -13,12 +25,14 @@ public class CallSoap {
 
 	public  final String WSDL_TARGET_NAMESPACE = "http://tempuri.org/";
 
-	public  final String SOAP_ADDRESS = "http://localhost:61071//appService.asmx";
+	public  final String SOAP_ADDRESS = "http://localhost:61071/appService.asmx";
+	
+	private Gson gson;
 	
 	public CallSoap() 
 	{ 
 	}
-	public String getFoods()
+	public listFood getFoods()
 	{
 		SoapObject request = new SoapObject(WSDL_TARGET_NAMESPACE,OPERATION_NAME);
 		
@@ -29,17 +43,24 @@ public class CallSoap {
 		envelope.setOutputSoapObject(request);
 	
 		HttpTransportSE httpTransport = new HttpTransportSE(SOAP_ADDRESS);
-		Object response=null;
+		
 		try
 		{
-		httpTransport.call(SOAP_ACTION, envelope);
-		response = envelope.getResponse();
+			httpTransport.call(SOAP_ACTION, envelope);
+			Object soapObject= (Object)envelope.getResponse();
+			if(soapObject != null){
+				String str_result = soapObject.toString();
+				Type type = new TypeToken<listFood>(){}.getType();
+				listFood rslt = gson.fromJson(str_result, type);
+				return rslt;
+			}
 		}
 		catch (Exception exception)
 		{
-		response=exception.toString();
+			System.out.println(exception.toString());
 		}
-		return response.toString();
+		listFood rslt = new listFood();
+		return rslt;
 	}
 
 }
