@@ -29,7 +29,7 @@ public class CallSoap {
 
 	public  final String WSDL_TARGET_NAMESPACE = "http://tempuri.org/";
 
-	public  final String SOAP_ADDRESS = "http://10.226.106.215/ws/appService.asmx";
+	public  final String SOAP_ADDRESS = "http://172.16.13.144/ws/appService.asmx";
 	
 	//private Gson gson;
 	

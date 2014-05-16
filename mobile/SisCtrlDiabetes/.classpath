@@ -7,5 +7,9 @@
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="C:/Users/Manuel/Downloads/ksoap2-android-full-2.1.2.jar/ksoap2-android-full-2.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Manuel/Desktop/gson-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Desktop/activation (1).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Desktop/additionnal (2).jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Desktop/jxl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Manuel/Desktop/mail (1).jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
