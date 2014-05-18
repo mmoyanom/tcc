@@ -130,7 +130,7 @@
     	    android:layout_height="wrap_content"
     	    android:ems="10"
     	    android:hint="Peso"
-    	    android:inputType="textPersonName" >
+    	    android:inputType="number" >
         	
     	</EditText>
     	
@@ -178,7 +178,7 @@
     	    android:layout_height="wrap_content"
     	    android:ems="10"
     	    android:hint="Tamanho"
-    	    android:inputType="textPersonName" >
+    	    android:inputType="number" >
 
     	</EditText>
     	<TextView
@@ -227,7 +227,7 @@
 	        android:layout_height="wrap_content"
 	        android:ems="10"
 	        android:hint="Q. Media"
-	        android:inputType="textPersonName" />
+	        android:inputType="number"/>
     	</LinearLayout>
 
 		 <TextView

@@ -23,13 +23,13 @@ public class Handler extends SQLiteOpenHelper{
 	public void onCreate(SQLiteDatabase db){
 		
 		String query = "create table user ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-											+ "name TEXT,email TEXT,weight TEXT,size TEXT,insulina TEXT);";
+											+ "name TEXT,email TEXT,weight TEXT,size TEXT,insulina TEXT,idDB INTEGER);";
 		
 		String query2 = " create table food ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ "name TEXT,weight TEXT,carb TEXT,fiber TEXT);";
 		
 		String query3 = " create table h_lunch ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
-				+ "iduser INTEGER,ins TEXT,gli TEXT,carb TEXT,fiber TEXT,date TEXT);";
+				+ "iduser INTEGER,ins TEXT,gli TEXT,carb TEXT,fiber TEXT,date TEXT,upBD int);";
 		
 		String query4 = " create table d_lunch ("+_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "
 				+ "idh INTEGER,idfood INTEGER,weight TEXT,carb TEXT,fiber TEXT);";
@@ -59,6 +59,21 @@ public class Handler extends SQLiteOpenHelper{
 		
 		this.getWritableDatabase().insert("user", null, values);
 		
+	}
+	
+	 public boolean updateUserIdDB(int idDB) {
+		    ContentValues args = new ContentValues();
+		    args.put("idDB", idDB);
+		    return this.getWritableDatabase().update("user", args, null, null) > 0;
+	}
+	 public boolean updateUser(String name,String email,String weight,String size, String insulina) {
+		    ContentValues args = new ContentValues();
+		    args.put("name", name);
+		    args.put("email", email);
+		    args.put("weight", weight);
+		    args.put("size", size);
+		    args.put("insulina", insulina);
+		    return this.getWritableDatabase().update("user", args, null, null) > 0;
 	}
 	
 	public String getUser(){
@@ -261,7 +276,7 @@ public class Handler extends SQLiteOpenHelper{
         return weight;
     }
     
-    public void insertLunchH(int iduser,String ins,String gli,String carb,String fiber,String date){
+    public void insertLunchH(int iduser,String ins,String gli,String carb,String fiber,String date,int upBD){
 		ContentValues values = new ContentValues();
 		values.put("iduser", iduser);
 		values.put("ins", ins);
@@ -269,6 +284,7 @@ public class Handler extends SQLiteOpenHelper{
 		values.put("carb", carb);
 		values.put("fiber", fiber);
 		values.put("date", date);
+		values.put("upBD", upBD);
 		this.getWritableDatabase().insert("h_lunch", null, values);
 	}
     
@@ -284,7 +300,25 @@ public class Handler extends SQLiteOpenHelper{
     
     public int getIdUser() {
         
-        String selectQuery = "SELECT _ID FROM user ORDER BY _ID ASC LIMIT 1";
+        String selectQuery = "SELECT _ID FROM user";
+        System.out.println("selectQuery:" + selectQuery);
+        int id = 0;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	id = Integer.parseInt(cursor.getString(0));
+
+            } while (cursor.moveToNext());
+        }
+        return id;
+    }
+    
+    public int getIdDBUser() {
+        
+        String selectQuery = "SELECT idDB FROM user";
         System.out.println("selectQuery:" + selectQuery);
         int id = 0;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -317,6 +351,62 @@ public class Handler extends SQLiteOpenHelper{
         }
         return id;
     }
+    
+    public ArrayList<H_Lunch> getAllLunchHtoSync() {
+        ArrayList<H_Lunch> h_LunchList = new ArrayList<H_Lunch>();
+        
+        String selectQuery = "SELECT  * FROM h_lunch where upBD = 0 ORDER BY _ID desc";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {            	
+            	H_Lunch hl = new H_Lunch();
+            	hl.setId(Integer.parseInt(cursor.getString(0)));
+            	hl.setIduser(Integer.parseInt(cursor.getString(1)));
+            	hl.setIns(cursor.getString(2));
+            	hl.setGli(cursor.getString(3));
+            	hl.setCarb(cursor.getString(4));
+            	hl.setFiber(cursor.getString(5));
+            	hl.setDate(cursor.getString(6));
+            	hl.setUpBD(Integer.parseInt(cursor.getString(7)));
+           
+            	h_LunchList.add(hl);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return h_LunchList;
+    }
+    
+    public ArrayList<D_Lunch> getAllLunchD(int idH) {
+        ArrayList<D_Lunch> d_LunchList = new ArrayList<D_Lunch>();
+        
+        String selectQuery = "SELECT  * FROM d_lunch where idh ="+idH;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if (cursor.moveToFirst()) {
+            do {
+            	D_Lunch dl = new D_Lunch();
+            	dl.setId(Integer.parseInt(cursor.getString(0)));
+            	dl.setIdH(Integer.parseInt(cursor.getString(1)));
+            	dl.setIdFood(Integer.parseInt(cursor.getString(2)));
+            	dl.setWeight(cursor.getString(3));
+            	dl.setCarb(cursor.getString(4));
+            	dl.setFiber(cursor.getString(5));
+            	           
+            	d_LunchList.add(dl);
+            } while (cursor.moveToNext());
+        }
+        return d_LunchList;
+    }
+    
+    public boolean updateLunchHStatusBD(int id) {
+	    ContentValues args = new ContentValues();
+	    args.put("upBD",1);
+	    return this.getWritableDatabase().update("h_lunch", args, "_ID = "+id, null) > 0;
+}
     
     
 }

@@ -1,20 +1,14 @@
 package com.example.sisctrldiabetes;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+
 
 import com.example.sisctrldiabetes.async.AsyncCallWS;
+import com.example.sisctrldiabetes.async.AsyncCallWSal;
+import com.example.sisctrldiabetes.async.AsyncResponse;
 import com.example.sisctrldiabetes.classes.Food;
 import com.example.sisctrldiabetes.classes.Handler;
 import com.example.sisctrldiabetes.classes.listFood;
@@ -22,12 +16,11 @@ import com.example.sisctrldiabetes.soap.CallSoap;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.util.Log;
+
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.GridView;
 
 public class MainActivity extends Activity implements OnClickListener{
 	
@@ -59,7 +52,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		 View btnConfiguracoes = findViewById(R.id.btnConfiguracoes);
 		 btnConfiguracoes.setOnClickListener(this);
 		 
-			
 			System.out.println("Inserting foods...");
 			AsyncCallWS task = new AsyncCallWS();
 	        task.execute();
@@ -133,6 +125,19 @@ public class MainActivity extends Activity implements OnClickListener{
 			 startActivity(it);
 	 	 }
 
+	}
+	/*
+	@Override
+	public void processFinish(ArrayList<Food> lsFoods) {
+		System.out.println("Inserting foods...");
+		try {
+			for(Food fd : lsFoods){
+				helper.insertFood(fd.getName(),fd.getWeight(),fd.getCarb(),fd.getFiber());
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}	
-	
+	*/
 }

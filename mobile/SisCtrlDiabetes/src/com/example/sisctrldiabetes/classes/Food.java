@@ -61,7 +61,4 @@ public class Food {
 	public void setFiber(Double _fiber) {
 		this._fiber = _fiber;
 	}
-
-    
-
 }

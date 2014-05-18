@@ -121,8 +121,9 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 				         insCons = (int)(insulina + (carbTotal/(1800/insMedia)));
 				         System.out.println("insCons:"+insCons);
 				         txtInsCons.setText(String.valueOf(insCons));
-				         txtCarbTotal.setText(String.valueOf(carbTotal));
-				         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
+				         
+				         txtCarbTotal.setText(String.format("%.4f", carbTotal));
+				         txtFiberTotalGerado.setText(String.format("%.4f",fiberTotal));
 	    			   }
 					}
         });
@@ -228,7 +229,16 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 					 		   Double.parseDouble(txtCarb.getText().toString()),
 					 		   Double.parseDouble(txtFiberTotal.getText().toString()));
 			 System.out.println("agrego food");
-			 List<Food> foods = helper.getAllFoods();
+			 int glicemiaVal = 0; // glicemia para evaluar
+			 glicemiaVal = Integer.parseInt(txtGlicemia.getText().toString());
+			 List<Food> foods = null;
+			 if (glicemiaVal>120){
+	        	 foods = helper.getAllFoodsAsc();
+	         }else if(glicemiaVal<80){
+	        	 foods = helper.getAllFoodsDesc();
+	         }else if(glicemiaVal>=80 && glicemiaVal<=120){
+	        	 foods = helper.getAllFoods();
+	         }
 			 
 	        	ArrayAdapter<String> adapter = new ArrayAdapter<String>(GeracaoInsulina.this,
 	                    android.R.layout.simple_list_item_multiple_choice, ArrayofName);
@@ -285,8 +295,9 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 			         insCons = (int)(carbTotal/(1800/insMedia));
 		         }
 		         
-		         txtCarbTotal.setText(String.valueOf(carbTotal));
-		         txtFiberTotalGerado.setText(String.valueOf(fiberTotal));
+		         txtCarbTotal.setText(String.format("%.4f", carbTotal));
+		         txtFiberTotalGerado.setText(String.format("%.4f",fiberTotal));
+		        
 		         System.out.println("insCons:"+insCons);
 		         txtInsCons.setText(String.valueOf(insCons));
  
@@ -322,8 +333,8 @@ public class GeracaoInsulina extends Activity implements OnClickListener{
 				 SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 				 Date today = Calendar.getInstance().getTime();        
 				 String sDate = df.format(today);
-				 System.out.println("insertando Header:"+idUser+","+insulina+","+glicemia+","+carbTotal+","+fiberTotal+","+sDate);
-				 helper.insertLunchH(idUser,insulina,glicemia,carbTotal,fiberTotal,sDate);
+				 System.out.println("insertando Header:"+idUser+","+insulina+","+glicemia+","+carbTotal+","+fiberTotal+","+sDate+",0");
+				 helper.insertLunchH(idUser,insulina,glicemia,carbTotal,fiberTotal,sDate,0);
 				 idH = helper.getLastIdLunchH();
 				 int cntChoice = listView.getCount();
 				 for(int i = 0; i < cntChoice; i++)

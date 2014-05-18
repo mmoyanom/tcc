@@ -40,34 +40,60 @@ Public Class appService
     End Function
     <WebMethod()> _
     <ScriptMethod(UseHttpGet:=True)> _
-    Public Function CadastrarUsuario(ByVal Susu As String) As Integer
+    Public Function CadastrarUsuario(ByVal name As String,
+                                     ByVal email As String,
+                                     ByVal weight As Double,
+                                     ByVal size As Double,
+                                     ByVal insulina As Double) As Integer
+
         Dim resul As Integer = 0
         Dim service As New BMethods
-        Dim listusu As New List(Of User)
-        If Susu IsNot Nothing Then
-            Dim slz As New JavaScriptSerializer
-            listusu = slz.Deserialize(Of List(Of User))(Susu)
-            resul = service.insertUser(listusu)
-        Else
-            resul = 0
-        End If
+
+        resul = service.insertUser(name, email, weight, size, insulina)
+
         Return resul
     End Function
     <WebMethod()> _
     <ScriptMethod(UseHttpGet:=True)> _
-    Public Function AtualizarUsuario(ByVal Susu As String) As Integer
+    Public Function AtualizarUsuario(ByVal idDB As Integer,
+                                     ByVal name As String,
+                                     ByVal email As String,
+                                     ByVal weight As Double,
+                                     ByVal size As Double,
+                                     ByVal insulina As Double) As Integer
         Dim resul As Integer = 0
         Dim service As New BMethods
-        Dim listusu As New List(Of User)
-        If Susu IsNot Nothing Then
-            Dim slz As New JavaScriptSerializer
-            listusu = slz.Deserialize(Of List(Of User))(Susu)
-            resul = service.updateUser(listusu)
-        Else
-            resul = 0
-        End If
+
+        resul = service.updateUser(idDB, name, email, weight, size, insulina)
+
         Return resul
     End Function
+    <WebMethod()> _
+    <ScriptMethod(UseHttpGet:=True)> _
+    Public Function insertLunchH(ByVal idUserBD As Integer,
+                                     ByVal insulina As Double,
+                                     ByVal glicemia As Double,
+                                     ByVal carb As Double,
+                                     ByVal fiber As Double) As Integer
+        Dim resul As Integer = 0
+        Dim service As New BMethods
 
+        resul = service.insertLunchH(idUserBD, insulina, glicemia, carb, fiber)
 
+        Return resul
+    End Function
+    <WebMethod()> _
+    <ScriptMethod(UseHttpGet:=True)> _
+    Public Function insertLunchD(ByVal idH As Integer,
+                                     ByVal idFood As Integer,
+                                     ByVal weight As Double,
+                                     ByVal carb As Double,
+                                     ByVal fiber As Double) As Integer
+        Dim resul As Integer = 0
+        Dim service As New BMethods
+
+        resul = service.insertLunchD(idH, idFood, weight, carb, fiber)
+
+        Return resul
+    End Function
 End Class

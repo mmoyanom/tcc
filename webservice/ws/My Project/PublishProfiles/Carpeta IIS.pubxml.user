@@ -14,19 +14,19 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/15/2014 11:34:25</publishTime>
     </File>
     <File Include="bin/ws.dll">
-      <publishTime>05/16/2014 15:16:00</publishTime>
+      <publishTime>05/18/2014 18:22:16</publishTime>
     </File>
     <File Include="bin/ws.pdb">
-      <publishTime>05/16/2014 15:16:00</publishTime>
+      <publishTime>05/18/2014 18:22:16</publishTime>
     </File>
     <File Include="bin/ws.xml">
-      <publishTime>05/16/2014 15:16:00</publishTime>
+      <publishTime>05/18/2014 18:22:16</publishTime>
     </File>
     <File Include="Deafult.aspx">
       <publishTime>05/15/2014 11:36:11</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/16/2014 15:16:33</publishTime>
+      <publishTime>05/18/2014 18:22:20</publishTime>
     </File>
   </ItemGroup>
 </Project>

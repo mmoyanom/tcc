@@ -94,12 +94,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="6.17"
+            android:hint="Nome"
             android:textSize="17sp" />
 
         <EditText
             android:id="@+id/txtGramas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="Gramas"
             android:layout_weight="3"
             android:textSize="17sp" />
 
@@ -108,12 +110,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:hint="Carb."
             android:textSize="17sp" />
         <EditText
             android:id="@+id/txtFiberCant"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:hint="Fibra"
             android:textSize="17sp" />
 
         <Button
