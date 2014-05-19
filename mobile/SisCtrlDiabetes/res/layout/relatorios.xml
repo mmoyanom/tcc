@@ -22,7 +22,28 @@
             android:id="@+id/lblDe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="De" />       
+            android:text="De" />
+
+        <EditText
+            android:id="@+id/TxtDe"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.64"
+            android:inputType="date" 
+            android:ems="10" >
+            <requestFocus />
+        </EditText>
+
+       <ImageButton
+           android:id="@+id/imgbtn"
+           android:layout_width="45dp"
+           android:layout_height="45dp"
+           android:layout_alignBottom="@+id/TxtDe"
+           android:layout_toRightOf="@+id/TxtDe"
+           android:background="@drawable/calen"
+           android:cropToPadding="true"
+           android:onClick="selectDateDe" />
+
     </LinearLayout>
 	<LinearLayout
         android:id="@+id/llate"
@@ -35,11 +56,42 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Até" />
+
+		<EditText
+		    android:id="@+id/txtFim"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="0.33"
+		    android:ems="10" />
+		<ImageButton
+			android:id="@+id/imgbtn"
+			android:layout_width="45dp"
+           android:layout_height="45dp"
+			android:layout_alignBottom="@+id/TxtDe"
+			android:layout_toRightOf="@+id/TxtDe"
+			  android:background="@drawable/calen"
+			android:cropToPadding="true"
+			android:onClick="selectDatePara"
+ 	/>
+
 	</LinearLayout>
-    <Button
+	
+	<LinearLayout
+        android:id="@+id/llate2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="true"
+        android:paddingTop="60dp"
+        android:orientation="horizontal" >
+		
+		<Button
         android:id="@+id/btnEnviarEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        
         android:text="Enviar ao e-mail" />
+	</LinearLayout>
+	
+    
     
 </LinearLayout>

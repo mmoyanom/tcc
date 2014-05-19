@@ -406,7 +406,85 @@ public class Handler extends SQLiteOpenHelper{
 	    ContentValues args = new ContentValues();
 	    args.put("upBD",1);
 	    return this.getWritableDatabase().update("h_lunch", args, "_ID = "+id, null) > 0;
-}
+    }
+    
+    public ArrayList<Reporte> Reporte(String DataInicio, String DataFim) {
+        ArrayList<Reporte> ReportList = new ArrayList<Reporte>();                
+        
+        String selectQuery = "SELECT * FROM h_lunch WHERE date between '" + DataInicio + "' and '" + DataFim + "'";       
+        													
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        GeracaoInsulina.ArrayofName.clear();
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	
+            	Reporte report = new Reporte();
+            	report.setID(cursor.getString(0));
+            	report.setdata(cursor.getString(6));
+            	report.setGlicemia(cursor.getString(3));
+            	report.setTotalIns(cursor.getString(2));           	
+        		
+                String name = cursor.getString(6)+" "+cursor.getString(3) +" "+ cursor.getString(2);
+                
+                GeracaoInsulina.ArrayofName.add(name);
+                
+                // Adding contact to list
+                ReportList.add(report);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return ReportList;
+    }
+    
+    public ArrayList<Food> ReporteAlimentos(String _IDL) {
+        ArrayList<Food> ReportListFood = new ArrayList<Food>();
+        
+        //idh";
+        String selectQuery = "SELECT f.name,l.carb  FROM d_lunch l inner join food f on (l.idfood = F._ID) WHERE idh =" + _IDL;
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        GeracaoInsulina.ArrayofName.clear();
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	
+            	Food food = new Food();
+            	food.setName(cursor.getString(0));            	
+            	food.setCarb(Double.parseDouble(cursor.getString(1)));
+            	           	        		
+                String name = cursor.getString(0)+" "+cursor.getString(1);
+                
+                GeracaoInsulina.ArrayofName.add(name);
+                
+                // Adding contact to list
+                ReportListFood.add(food);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return ReportListFood;
+    }
+    
+    public String getMail() {
+        
+        String selectQuery = "SELECT email FROM user ORDER BY _ID ASC LIMIT 1";
+        System.out.println("selectQuery:" + selectQuery);
+        String email = "";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+            	email = cursor.getString(0);
+
+            } while (cursor.moveToNext());
+        }
+        return email;
+    }
     
     
 }
